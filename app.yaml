@@ -1,0 +1,13 @@
+runtime: python39
+entrypoint: gunicorn -b :$PORT app:app
+
+env_variables:
+  SQLALCHEMY_DATABASE_URI: 'sqlite:///videos.db'
+
+automatic_scaling:
+  target_cpu_utilization: 0.65
+  target_throughput_utilization: 0.65
+
+handlers:
+- url: /static
+  static_dir: static
